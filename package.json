@@ -7,13 +7,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nss-cohort-2014-06-07/hapi-technologies"
+    "url": "https://github.co/bchiatt/blackjack"
   },
   "scripts": {
     "start": "node server/index.js",
     "postinstall": "grunt deploy"
   },
-  "author": "Chyld Medford <chyld.medford@gmail.com>",
+  "author": "Brian Hiatt <brian.hiatt41@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^0.8.0",
