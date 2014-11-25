@@ -2,7 +2,9 @@
 
 var mongoose   = require('mongoose'),
     bcrypt     = require('bcrypt'),
-    //request    = require('request'),
+    request    = require('request'),
+    fs         = require('fs'),
+    path       = require('path'),
     UserSchema = null,
     User       = null;
 
@@ -17,8 +19,14 @@ UserSchema.methods.encrypt = function(){
   this.password = bcrypt.hashSync(this.password, 10);
 };
 
-UserSchema.methods.saveAvatar = function(cb){
-  //request(this.avatar);
+UserSchema.methods.saveAvatar = function(){
+  var assetDir = __dirname + '/../../assets/' + this._id,
+      ext      = path.extname(this.avatar);
+
+  fs.mkdirSync(assetDir);
+
+  request(this.avatar).pipe(fs.createWriteStream(assetDir + '/avatar' + ext));
+  this.avatar = '/assets/' + this._id + '/avatar' + ext;
 };
 
 UserSchema.statics.login = function(obj, cb){

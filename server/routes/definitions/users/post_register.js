@@ -19,11 +19,9 @@ module.exports = {
   handler: function(request, reply){
     var user = new User(request.payload);
     user.encrypt();
-    user.saveAvatar(function(err){
-      if(err){reply().code(400);}
-      user.save(function(err){
-        reply().code(err ? 401 : 200);
-      });
+    user.saveAvatar();
+    user.save(function(err){
+      reply().code(err ? 401 : 200);
     });
   }
 };
