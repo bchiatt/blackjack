@@ -4,6 +4,7 @@
   angular.module('hapi-auth')
     .controller('RoomsListCtrl', ['$rootScope', '$scope', 'Room', function($rootScope, $scope, Room){
       $scope.message          = {};
+      $scope.messages         = [];
       $scope.room             = {};
       $scope.message.username = $rootScope.rootuser.username;
       $scope.message.avatar   = $rootScope.rootuser.avatar;
@@ -32,10 +33,8 @@
       };
 
       socket.on('bGlobalChat', function(data){
-        var chatWindow = $('#messages');
-        chatWindow.append('<img class="avatar" src=' + data.avatar + '></img>');
-        chatWindow.append('<div class="chat-name">' + data.username + ': </div>');
-        chatWindow.append('<div class="chat-text">' + data.body + '</div>');
+        $scope.messages.unshift(data);
+        $scope.$apply();
         $('#message').focus();
       });
 

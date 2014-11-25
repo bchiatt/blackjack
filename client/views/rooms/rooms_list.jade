@@ -9,7 +9,7 @@ h1 Rooms
                     .small-4.columns
                         input#name(type='text', placeholder='unique name', name='name', ng-model='room.name', required)
                     .small-4.columns
-                        input#password(type='text', placeholder='password', name='password', ng-model='room.password', required)
+                        input#password(type='password', placeholder='password', name='password', ng-model='room.password', required)
                     .small-4.columns
                         button.success.tiny.radius(ng-click='addRoom()') Create Room
         .row
@@ -24,11 +24,15 @@ h1 Rooms
                     .room(ng-repeat='room in rooms | orderBy:"createdAt":true')
                         .owner: img.avatar-icon(src='{{room.creator.avatar}}')
                         .name {{room.name}}
-                        .password: input(type=text, style="width: 100px")
-                        .join: button.success.tiny.radius(ng-click='join(room)') Join!
+                        .password: input(type='password', style="width: 100px")
+                        .join: button.alert.tiny.radius(ng-click='join(room)') Join!
     .small-1.columns
     .small-4.columns
         h3 Chat
         #messages.panel.callout.radius
+            .chat(ng-repeat="m in messages")
+                img.avatar(src="{{m.avatar}}")
+                .chat-name {{m.username}}:
+                .chat-text {{m.body}}
         input#message(type='text', ng-model='message.body', required)
-        button.success.tiny.radius(ng-click='chat()') Send Message
+        button.tiny.radius(ng-click='chat()') Send Message
