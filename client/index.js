@@ -16,9 +16,9 @@
     }])
     .run(['$rootScope', '$http', function($rootScope, $http){
       $http.get('/status').then(function(response){
-        $rootScope.$broadcast('username', response.data.username);
+        $rootScope.rootuser = response.data;
       }, function(){
-        $rootScope.$broadcast('username', null);
+        $rootScope.rootuser = null;
       });
 
       window.socket = io.connect('/');
