@@ -1,18 +1,24 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    bcrypt   = require('bcrypt'),
+var mongoose   = require('mongoose'),
+    bcrypt     = require('bcrypt'),
+    //request    = require('request'),
     UserSchema = null,
-    User = null;
+    User       = null;
 
 UserSchema = new mongoose.Schema({
   username:  {type: String, required: true, validate: [usernameV, 'username length'], unique: true},
   password:  {type: String, required: true, validate: [passwordV, 'password length']},
+  avatar:  {type: String, required: true},
   createdAt: {type: Date,  required: true, default: Date.now}
 });
 
 UserSchema.methods.encrypt = function(){
   this.password = bcrypt.hashSync(this.password, 10);
+};
+
+UserSchema.methods.saveAvatar = function(cb){
+  //request(this.avatar);
 };
 
 UserSchema.statics.login = function(obj, cb){

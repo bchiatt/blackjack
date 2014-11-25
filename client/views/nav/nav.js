@@ -8,6 +8,11 @@
         $scope.init = true;
       });
 
+      $scope.$on('avatar', function(e, avatar){
+        console.log(avatar);
+        $scope.avatar = avatar;
+      });
+
       $scope.$on('online', function(){
         $scope.online = true;
         $scope.$digest();
