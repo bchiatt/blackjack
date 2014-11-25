@@ -8,6 +8,7 @@ module.exports = {
   handler: function(request, reply){
     Room.find().populate('creator').exec(function(err, rooms){
       rooms.forEach(function(item){
+        item._id = null;
         item.creator.password = null;
         item.password = null;
       });

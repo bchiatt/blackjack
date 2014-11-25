@@ -16,5 +16,21 @@ RoomSchema.methods.encrypt = function(){
   this.password = bcrypt.hashSync(this.password, 10);
 };
 
+RoomSchema.statics.login = function(obj, cb){
+  Room.findOne({name: obj.name}, function(err, room){
+    if(!room){
+      return cb();
+    }
+
+    var isGood = bcrypt.compareSync(obj.password, room.password);
+
+    if(!isGood){
+      return cb();
+    }
+
+    cb(room._id);
+  });
+};
+
 Room = mongoose.model('Room', RoomSchema);
 module.exports = Room;

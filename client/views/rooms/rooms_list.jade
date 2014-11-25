@@ -24,7 +24,7 @@ h1 Rooms
                     .room(ng-repeat='room in rooms | orderBy:"createdAt":true')
                         .owner: img.avatar-icon(src='{{room.creator.avatar}}')
                         .name {{room.name}}
-                        .password: input(type='password', style="width: 100px")
+                        .password: input(type='password', ng-model='password', style="width: 100px")
                         .join: button.alert.tiny.radius(ng-click='join(room)') Join!
     .small-1.columns
     .small-4.columns

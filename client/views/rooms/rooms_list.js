@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('hapi-auth')
-    .controller('RoomsListCtrl', ['$rootScope', '$scope', 'Room', function($rootScope, $scope, Room){
+    .controller('RoomsListCtrl', ['$rootScope', '$scope', '$state', 'Room', function($rootScope, $scope, $state, Room){
       $scope.message          = {};
       $scope.messages         = [];
       $scope.room             = {};
@@ -19,7 +19,10 @@
       };
 
       $scope.join = function(room){
-        console.log(room);
+        Room.join({name:room.name, password:this.password}).then(function(response){
+          var roomId = response.data.roomId;
+          $state.go('rooms.detail', {roomId:roomId});
+        });
       };
 
       $scope.addRoom = function(){
