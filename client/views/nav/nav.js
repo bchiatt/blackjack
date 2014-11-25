@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('hapi-auth')
-    .controller('NavCtrl', ['$rootscope', '$scope', '$state', 'User', function($rootscope, $scope, $state, User){
+    .controller('NavCtrl', ['$rootScope', '$scope', '$state', 'User', function($rootScope, $scope, $state, User){
       $scope.$on('username', function(e, username){
         $scope.username = username;
         $scope.init = true;
@@ -20,7 +20,7 @@
 
       $scope.logout = function(){
         User.logout().then(function(){
-          $rootscope.rootuser = null;
+          $rootScope.rootuser = null;
           toastr.success('User successfully logged out.');
           $state.go('home');
         });

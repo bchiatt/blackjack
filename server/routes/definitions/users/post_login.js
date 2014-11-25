@@ -20,7 +20,7 @@ module.exports = {
       if(user){
         user.password = null;
         request.auth.session.set(user);
-        reply(use);
+        reply(user);
       }else {
         reply().code(401);
       }

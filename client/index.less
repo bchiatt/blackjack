@@ -2,12 +2,26 @@
   display: none !important;
 }
 
-.avatar{
-  height: 45px;
-  width: 45px;
-  background-size: cover;
-}
 
 #messages{
-  height: 250px;
+  height: 300px;
+  overflow: scroll;
+
+  .avatar{
+    display: inline-block;
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    padding: 8px;
+  }
+
+  .chat-name{
+    display: inline-block;
+    font-size: 1.3em;
+    font-weight: bold;
+    vertical-align: middle;
+  }
+
+  .chat-text{
+  }
 }
